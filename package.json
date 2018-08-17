@@ -1,0 +1,16 @@
+{
+  "name": "gatsby-plugin-asset-path",
+  "version": "0.0.1",
+  "description": "Gatsby plugin that moves JS and CSS files and static folder to a custom folder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryan Chung <ryan@madecomfy.com.au>",
+  "license": "Apache-2.0",
+  "keywords": [
+    "gatsby",
+    "assets",
+    "subdirectory"
+  ]
+}
