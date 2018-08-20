@@ -19,6 +19,9 @@ coverage
 # node-waf configuration
 .lock-wscript
 
+# circle ci
+.circleci
+
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
