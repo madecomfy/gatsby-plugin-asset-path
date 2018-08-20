@@ -4,13 +4,15 @@
   "description": "Gatsby plugin that moves JS and CSS files and static folder to a custom folder",
   "main": "index.js",
   "scripts": {
+    "build": "babel src --out-dir .",
     "lint": "eslint src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No test for now... yes we know.. it's baaaad\""
   },
   "author": "Ryan Chung <ryan@madecomfy.com.au>",
   "license": "Apache-2.0",
   "keywords": [
     "gatsby",
+    "gatsby-plugin",
     "assets",
     "subdirectory"
   ],
@@ -24,6 +26,10 @@
     "gatsby": ">2.0.0-alpha"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "eslint": "^5.4.0",
     "eslint-config-madecomfy": "^1.0.1"
   }
