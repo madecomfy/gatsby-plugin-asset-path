@@ -6,7 +6,7 @@ defaults: &defaults
     - image: madecomfyau/node-aws:10
 
 jobs:
-  test:
+  configure:
     <<: *defaults
     steps:
       - checkout
@@ -18,8 +18,6 @@ jobs:
             - v1-yarn-cache-
 
       - run: yarn install
-      - run: yarn lint
-      - run: yarn test
 
       - save_cache:
           paths:
@@ -29,6 +27,25 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths: .
+
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run: yarn lint
+      - run: yarn test
+
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run: yarn build
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+
   deploy:
     <<: *defaults
     steps:
@@ -45,13 +62,28 @@ workflows:
   version: 2
   test-deploy:
     jobs:
-      - test:
+      - configure:
           filters:
             tags:
               only: /^v.*/
+      - test:
+          requires:
+            - configure
+          filters:
+            tags:
+              only: /^v.*/
+      - build:
+          requires:
+            - configure
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
       - deploy:
           requires:
             - test
+            - build
           filters:
             tags:
               only: /^v.*/
