@@ -954,8 +954,8 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
 eslint-config-madecomfy@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-madecomfy/-/eslint-config-madecomfy-1.0.2.tgz#2ee2966a0616c66389c7fc5b03a942b80357d073"
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/eslint-config-madecomfy/-/eslint-config-madecomfy-1.0.3.tgz#de22c1b2ff37616a80722c02566c2354707c75b1"
   dependencies:
     eslint-config-prettier "^3.0.1"
     eslint-plugin-cypress "^2.0.1"
