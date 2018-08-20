@@ -4,6 +4,7 @@
   "description": "Gatsby plugin that moves JS and CSS files and static folder to a custom folder",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ryan Chung <ryan@madecomfy.com.au>",
@@ -21,5 +22,9 @@
   },
   "peerDependencies": {
     "gatsby": ">2.0.0-alpha"
+  },
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-madecomfy": "^1.0.1"
   }
 }
