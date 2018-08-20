@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-asset-path",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Gatsby plugin that moves JS and CSS files and static folder to a custom folder",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "eslint": "^5.4.0",
