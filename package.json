@@ -12,5 +12,14 @@
     "gatsby",
     "assets",
     "subdirectory"
-  ]
+  ],
+  "dependencies": {
+    "fs-extra": "^7.0.0",
+    "history": "^4.7.2",
+    "react": "^16.4.2",
+    "react-router-dom": "^4.3.1"
+  },
+  "peerDependencies": {
+    "gatsby": ">2.0.0-alpha"
+  }
 }
