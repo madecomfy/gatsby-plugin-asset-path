@@ -55,6 +55,9 @@ jobs:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
       - run:
+          name: Bump up version from tag number
+          command: npm --no-git-tag-version version ${CIRCLE_TAG:1}
+      - run:
           name: Publish package
           command: npm publish
 
@@ -65,27 +68,25 @@ workflows:
       - configure:
           filters:
             tags:
-              only: /^v.*/
+              only: /^v[0-9].*/
       - test:
           requires:
             - configure
           filters:
             tags:
-              only: /^v.*/
+              only: /^v[0-9].*/
       - build:
           requires:
             - configure
           filters:
             tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
+              only: /^v[0-9].*/
       - deploy:
           requires:
             - test
             - build
           filters:
             tags:
-              only: /^v.*/
+              only: /^v[0-9].*/
             branches:
               ignore: /.*/
