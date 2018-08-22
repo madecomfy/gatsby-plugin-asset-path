@@ -10,6 +10,10 @@
   },
   "author": "Ryan Chung <ryan@madecomfy.com.au>",
   "license": "mit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madecomfy/gatsby-plugin-asset-path.git"
+  },
   "keywords": [
     "gatsby",
     "gatsby-plugin",
