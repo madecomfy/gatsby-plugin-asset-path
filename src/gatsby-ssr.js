@@ -7,6 +7,6 @@ import { StaticRouter } from "react-router-dom"
  * @see {@link https://next.gatsbyjs.org/docs/ssr-apis/#replaceStaticRouterComponent}
  * @see {@link https://github.com/gatsbyjs/gatsby/blob/v2.0.0-alpha.20/packages/gatsby/cache-dir/static-entry.js#L114}
  */
-export const replaceStaticRouterComponent = () => {
+export const replaceRenderer = () => {
   return ({ basename, ...props }) => <StaticRouter {...props} />
 }
