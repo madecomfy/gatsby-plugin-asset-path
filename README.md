@@ -72,7 +72,7 @@ yarn install -D gatsby-plugin-asset-path
 ```javascript
 // Your gatsby-config.js
 {
-    prefixPath: "custom_asset_folder",
+    pathPrefix: "custom_asset_folder",
     plugins: [
         {
             resolve: "gatsby-plugin-asset-path"
@@ -81,10 +81,10 @@ yarn install -D gatsby-plugin-asset-path
 }
 ```
 
-In our use case above, we have `prefixPath` set as followed:
+In our use case above, we have `pathPrefix` set as followed:
 ```javascript
 {
-    prefixPath: `/assets/${Date.now().toString()}`
+    pathPrefix: `/assets/${Date.now().toString()}`
 }
 ```
 
@@ -112,4 +112,4 @@ Stops Webpack from generating the .js.map files
 
 ## Downside
 
-Using `prefixPath` is not ideal as it is really used by Gatsby to generate the sites in the case it will be hosted in a subfolder. Using this plugin breaks that situation as it is assumed the site will be served from the domain root.
+Using `pathPrefix` is not ideal as it is really used by Gatsby to generate the sites in the case it will be hosted in a subfolder. Using this plugin breaks that situation as it is assumed the site will be served from the domain root.
