@@ -67,6 +67,7 @@ Our new `assets` folder would contain assets of every build once on S3.
 ```
 npm install --save-dev gatsby-plugin-asset-path
 ```
+
 ```
 yarn install -D gatsby-plugin-asset-path
 ```
@@ -89,7 +90,7 @@ In our use case above, we have `assetPrefix` set as followed:
 
 ```javascript
 {
-    assetPrefix: `/assets/${Date.now().toString()}`;
+  assetPrefix: `/assets/${Date.now().toString()}`,
 }
 ```
 
@@ -104,13 +105,13 @@ Stops Webpack from generating the .js.map files
 ```javascript
 // Your gatsby-config.js
 {
-    plugins: [
-        {
-            resolve: "gatsby-plugin-asset-path",
-            options: {
-                removeMapFiles: true
-            }
-        }
-    ];
+  plugins: [
+    {
+      resolve: "gatsby-plugin-asset-path",
+      options: {
+        removeMapFiles: true,
+      },
+    },
+  ];
 }
 ```
