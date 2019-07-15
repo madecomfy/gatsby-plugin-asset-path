@@ -10,11 +10,11 @@ import * as path from "path";
  */
 export const onCreateWebpackConfig = (
   { stage, actions },
-  { removeMapFiles }
+  { removeMapFiles },
 ) => {
   if (removeMapFiles === true && stage === "build-javascript") {
     actions.setWebpackConfig({
-      devtool: false
+      devtool: false,
     });
   }
 };
@@ -27,12 +27,12 @@ export const onPostBuild = async ({ pathPrefix }) => {
   const publicFolder = "./public";
   const assetFolder = path.join(publicFolder, `.${pathPrefix}`);
 
-  const copy = fileOrFolder => {
+  const copy = (fileOrFolder) => {
     const currentPath = path.join(publicFolder, fileOrFolder);
     const newPath = path.join(assetFolder, fileOrFolder);
     return fs.copy(currentPath, newPath);
   };
-  const move = fileOrFolder => {
+  const move = (fileOrFolder) => {
     const currentPath = path.join(publicFolder, fileOrFolder);
     const newPath = path.join(assetFolder, fileOrFolder);
     return fs.move(currentPath, newPath);
@@ -41,11 +41,11 @@ export const onPostBuild = async ({ pathPrefix }) => {
   // Move css,js and webmanifest files
   const files = fs.readdirSync(publicFolder);
   await Promise.all(
-    files.map(file => {
+    files.map((file) => {
       if (/.*\.(js|css|webmanifest)$/.test(file)) {
         return move(file);
       }
-    })
+    }),
   );
 
   // Move statics data and icons
