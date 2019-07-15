@@ -2,6 +2,10 @@
 
 Move all of your JS and CSS build files, as well as the static folder into a subdirectory of your choice.
 
+## Breaking change in v1
+
+Use `assetPrefix` instead of `pathPrefix`
+
 ## Our use case
 
 Gatsby by default will generate all of the assets and put them directly at the root level:
@@ -72,7 +76,7 @@ yarn install -D gatsby-plugin-asset-path
 ```javascript
 // Your gatsby-config.js
 {
-    pathPrefix: "custom_asset_folder",
+    assetPrefix: "custom_asset_folder",
     plugins: [
         {
             resolve: "gatsby-plugin-asset-path"
@@ -81,10 +85,11 @@ yarn install -D gatsby-plugin-asset-path
 }
 ```
 
-In our use case above, we have `pathPrefix` set as followed:
+In our use case above, we have `assetPrefix` set as followed:
+
 ```javascript
 {
-    pathPrefix: `/assets/${Date.now().toString()}`
+    assetPrefix: `/assets/${Date.now().toString()}`;
 }
 ```
 
@@ -106,10 +111,6 @@ Stops Webpack from generating the .js.map files
                 removeMapFiles: true
             }
         }
-    ]
+    ];
 }
 ```
-
-## Downside
-
-Using `pathPrefix` is not ideal as it is really used by Gatsby to generate the sites in the case it will be hosted in a subfolder. Using this plugin breaks that situation as it is assumed the site will be served from the domain root.
