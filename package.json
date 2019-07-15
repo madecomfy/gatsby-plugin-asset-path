@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-asset-path",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "Gatsby plugin that moves JS and CSS files and static folder to a custom folder",
   "main": "index.js",
   "scripts": {
