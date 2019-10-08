@@ -38,11 +38,11 @@ export const onPostBuild = async ({ pathPrefix }, { additionalFiles = [] }) => {
     return fs.move(currentPath, newPath);
   };
 
-  // Move css,js and webmanifest files
+  // Move css and js
   const files = fs.readdirSync(publicFolder);
   await Promise.all(
     files.map((file) => {
-      if (/.*\.(js|css|webmanifest)$/.test(file)) {
+      if (/.*\.(js|css)$/.test(file)) {
         return move(file);
       }
     }),
