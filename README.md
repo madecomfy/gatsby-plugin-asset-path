@@ -118,7 +118,7 @@ Stops Webpack from generating the .js.map files
 
 ### additionalFiles
 
-Default: []
+Default: `[]`
 
 Additional files to move to the asset directory.
 
