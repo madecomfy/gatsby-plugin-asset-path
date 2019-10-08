@@ -53,6 +53,6 @@ export const onPostBuild = async ({ pathPrefix }, { additionalFiles = [] }) => {
   // Move statics data and icons
   await Promise.all(["static", "icons"].map(move));
 
-  // Copy page data and sitemap
-  await Promise.all(["page-data", "sitemap.xml"].map(copy));
+  // Copy page data
+  await Promise.all(["page-data"].map(copy));
 };
