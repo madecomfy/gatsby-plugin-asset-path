@@ -6,6 +6,19 @@ Move all of your JS and CSS build files, as well as the static folder into a sub
 
 Use `assetPrefix` instead of `pathPrefix`
 
+## Breaking change in v2
+
+- A sitemap is no longer required
+- A webmanifest is no longer required
+
+The above two files were hard coded into this plugin in earlier versions. Now you can instead use the new `additionalFiles` option to pass whatever files you want to move to the asset path. To get the same behavior as v1, use the following options:
+
+```javascript
+options: {
+  additionalFiles: ["manifest.webmanifest", "sitemap.xml"],
+},
+```
+
 ## Our use case
 
 Gatsby by default will generate all of the assets and put them directly at the root level:
