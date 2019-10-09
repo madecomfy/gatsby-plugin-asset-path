@@ -116,11 +116,11 @@ Stops Webpack from generating the .js.map files
 }
 ```
 
-### additionalFiles
+### additionalPaths
 
 Default: []
 
-Additional files to move to the asset directory.
+Additional paths to files/folders that should be moved to the asset directory.
 
 ```javascript
 // Your gatsby-config.js
@@ -129,7 +129,7 @@ Additional files to move to the asset directory.
     {
       resolve: "gatsby-plugin-asset-path",
       options: {
-        additionalFiles: ['example.txt'],
+        additionalPaths: ['example.txt', 'foo/example.txt', 'bar/'],
       },
     },
   ];
