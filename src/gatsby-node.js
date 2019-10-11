@@ -33,18 +33,15 @@ export const onPostBuild = async ({ pathPrefix }, { additionalFiles = [] }) => {
     return fs.move(currentPath, newPath);
   };
 
-  // Move css and js
-  const files = fs.readdirSync(publicFolder);
-  await Promise.all(
-    files.map((file) => {
-      if (/.*\.(js|css)$/.test(file)) {
-        return move(file);
-      }
-    }),
-  );
+  const filterFilesIn = (folder) =>
+    fs.readdirSync(folder).filter((file) => /.*\.(js|css)$/.test(file));
 
-  await Promise.all(additionalFiles.map((file) => move(file)));
+  const filesInPublicFolder = filterFilesIn(publicFolder);
+  const directories = ["static", "icons", "page-data"];
+  const thingsToMove = directories
+    .concat(filesInPublicFolder)
+    .concat(additionalFiles);
 
-  // Move statics data, icons and page data
-  await Promise.all(["static", "icons", "page-data"].map(move));
+  // Move files and directories
+  await Promise.all(thingsToMove.map(move));
 };
