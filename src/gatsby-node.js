@@ -50,9 +50,6 @@ export const onPostBuild = async ({ pathPrefix }, { additionalFiles = [] }) => {
 
   await Promise.all(additionalFiles.map((file) => move(file)));
 
-  // Move statics data and icons
-  await Promise.all(["static", "icons"].map(move));
-
-  // Copy page data
-  await Promise.all(["page-data"].map(copy));
+  // Move statics data, icons and page data
+  await Promise.all(["static", "icons", "page-data"].map(move));
 };
