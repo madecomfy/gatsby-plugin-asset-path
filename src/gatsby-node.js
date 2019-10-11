@@ -27,11 +27,6 @@ export const onPostBuild = async ({ pathPrefix }, { additionalFiles = [] }) => {
   const publicFolder = "./public";
   const assetFolder = path.join(publicFolder, `.${pathPrefix}`);
 
-  const copy = (fileOrFolder) => {
-    const currentPath = path.join(publicFolder, fileOrFolder);
-    const newPath = path.join(assetFolder, fileOrFolder);
-    return fs.copy(currentPath, newPath);
-  };
   const move = (fileOrFolder) => {
     const currentPath = path.join(publicFolder, fileOrFolder);
     const newPath = path.join(assetFolder, fileOrFolder);
