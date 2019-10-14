@@ -19,7 +19,7 @@ options: {
 },
 ```
 
-Also note that `sitemap.xml` and the `page-data` folder was copied to assets folder before, now they are moved just as all other files this plugin handles.
+Also note that `sitemap.xml` and the `page-data` folder were copied to assets folder before, now they are moved just as all other files this plugin handles.
 
 ## Our use case
 
