@@ -11,11 +11,11 @@ Use `assetPrefix` instead of `pathPrefix`
 - A sitemap is no longer required
 - A webmanifest is no longer required
 
-The above two files were hard coded into this plugin in earlier versions. Now you can instead use the new `additionalFiles` option to pass whatever files you want to move to the asset path. To get the same behavior as v1, use the following options:
+The above two files were hard coded into this plugin in earlier versions. Now you can instead use the new `additionalPaths` option to pass whatever files you want to move to the asset path. To get the same behavior as v1, use the following options:
 
 ```javascript
 options: {
-  additionalFiles: ["manifest.webmanifest", "sitemap.xml"],
+  additionalPaths: ["manifest.webmanifest", "sitemap.xml"],
 },
 ```
 
