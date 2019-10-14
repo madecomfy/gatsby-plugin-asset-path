@@ -40,7 +40,7 @@ export const onPostBuild = async ({ pathPrefix }, { additionalPaths = [] }) => {
   const directories = ["static", "icons", "page-data"];
   const thingsToMove = directories
     .concat(filesInPublicFolder)
-    .concat(additionalFiles);
+    .concat(additionalPaths);
 
   // Move files and directories
   await Promise.all(thingsToMove.map(move));
