@@ -27,32 +27,21 @@ export const onPostBuild = async ({ pathPrefix }, { additionalPaths = [] }) => {
   const publicFolder = "./public";
   const assetFolder = path.join(publicFolder, `.${pathPrefix}`);
 
-  const copy = (fileOrFolder) => {
-    const currentPath = path.join(publicFolder, fileOrFolder);
-    const newPath = path.join(assetFolder, fileOrFolder);
-    return fs.copy(currentPath, newPath);
-  };
   const move = (fileOrFolder) => {
     const currentPath = path.join(publicFolder, fileOrFolder);
     const newPath = path.join(assetFolder, fileOrFolder);
     return fs.move(currentPath, newPath);
   };
 
-  // Move css,js and webmanifest files
-  const files = fs.readdirSync(publicFolder);
-  await Promise.all(
-    files.map((file) => {
-      if (/.*\.(js|css|webmanifest)$/.test(file)) {
-        return move(file);
-      }
-    }),
-  );
+  const filterFilesIn = (folder) =>
+    fs.readdirSync(folder).filter((file) => /.*\.(js|css)$/.test(file));
 
-  await Promise.all(additionalPaths.map((file) => move(file)));
+  const filesInPublicFolder = filterFilesIn(publicFolder);
+  const directories = ["static", "icons", "page-data"];
+  const thingsToMove = directories
+    .concat(filesInPublicFolder)
+    .concat(additionalFiles);
 
-  // Move statics data and icons
-  await Promise.all(["static", "icons"].map(move));
-
-  // Copy page data and sitemap
-  await Promise.all(["page-data", "sitemap.xml"].map(copy));
+  // Move files and directories
+  await Promise.all(thingsToMove.map(move));
 };
