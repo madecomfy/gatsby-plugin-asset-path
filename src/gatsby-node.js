@@ -23,7 +23,14 @@ export const onCreateWebpackConfig = (
  * Moves all js and css files into timestamp-named folder
  * @see {@link https://next.gatsbyjs.org/docs/node-apis/#onPostBuild}
  */
-export const onPostBuild = async ({ pathPrefix }, { additionalPaths = [] }) => {
+export const onPostBuild = async (
+  { pathPrefix },
+  {
+    additionalPaths = [], // depricated argument to prevent breaking change
+    paths = ["static", "icons", "page-data"],
+    fileTypes = ["js", "css"],
+  },
+) => {
   const publicFolder = "./public";
   const assetFolder = path.join(publicFolder, `.${pathPrefix}`);
 
@@ -33,14 +40,15 @@ export const onPostBuild = async ({ pathPrefix }, { additionalPaths = [] }) => {
     return fs.move(currentPath, newPath);
   };
 
+  const filesExtensions = fileTypes.join("|");
+  const filesRegex = RegExp(`.*.(${filesExtensions})$`);
   const filterFilesIn = (folder) =>
-    fs.readdirSync(folder).filter((file) => /.*\.(js|css)$/.test(file));
+    fs.readdirSync(folder).filter((file) => filesRegex.test(file));
 
   const filesInPublicFolder = filterFilesIn(publicFolder);
-  const directories = ["static", "icons", "page-data"];
-  const thingsToMove = directories
-    .concat(filesInPublicFolder)
-    .concat(additionalPaths);
+  const thingsToMove = paths
+    .concat(additionalPaths)
+    .concat(filesInPublicFolder);
 
   // Move files and directories
   await Promise.all(thingsToMove.map(move));
