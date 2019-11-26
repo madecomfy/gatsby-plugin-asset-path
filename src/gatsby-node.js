@@ -30,12 +30,26 @@ export const onPostBuild = async ({ pathPrefix }, { additionalFiles = [] }) => {
   const copy = (fileOrFolder) => {
     const currentPath = path.join(publicFolder, fileOrFolder);
     const newPath = path.join(assetFolder, fileOrFolder);
-    return fs.copy(currentPath, newPath);
+    try {
+      if (fs.existsSync(currentPath)) {
+        return fs.copy(currentPath, newPath);
+      }
+    } catch (err) {
+      console.error(err);
+      return Promise.resolve();
+    }
   };
   const move = (fileOrFolder) => {
     const currentPath = path.join(publicFolder, fileOrFolder);
     const newPath = path.join(assetFolder, fileOrFolder);
-    return fs.move(currentPath, newPath);
+    try {
+      if (fs.existsSync(currentPath)) {
+        return fs.move(currentPath, newPath);
+      }
+    } catch (err) {
+      console.error(err);
+      return Promise.resolve();
+    }
   };
 
   // Move css,js and webmanifest files
