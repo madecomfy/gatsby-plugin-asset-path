@@ -11,11 +11,11 @@ Use `assetPrefix` instead of `pathPrefix`
 - A sitemap is no longer required
 - A webmanifest is no longer required
 
-The above two files were hard coded into this plugin in earlier versions. If you still want to move these files to the assets folder, use the new `additionalPaths` option, see below for more information on the option. To get the same behavior as v1, use the following options:
+The above two files were hard coded into this plugin in earlier versions. If you still want to move these files to the assets folder, use the new `paths` option, see below for more information on the option. To get the same behavior as v1, use the following options:
 
 ```javascript
 options: {
-  additionalPaths: ["manifest.webmanifest", "sitemap.xml"],
+  paths: ["manifest.webmanifest", "sitemap.xml"],
 },
 ```
 
@@ -131,11 +131,11 @@ Stops Webpack from generating the .js.map files
 }
 ```
 
-### additionalPaths
+### paths
 
-Default: `[]`
+Default: `["static", "icons", "page-data"]`
 
-Additional paths to files/folders that should be moved to the asset directory.
+The paths of files/folders to be moved to the asset directory.
 
 ```javascript
 // Your gatsby-config.js
@@ -144,7 +144,27 @@ Additional paths to files/folders that should be moved to the asset directory.
     {
       resolve: "gatsby-plugin-asset-path",
       options: {
-        additionalPaths: ['example.txt', 'foo/example.txt', 'bar/'],
+        paths: ["static"],
+      },
+    },
+  ];
+}
+```
+
+### fileTypes
+
+Default: `["js", "css"]`
+
+The types of files in the root `publicFolder` to be moved to the asset directory.
+
+```javascript
+// Your gatsby-config.js
+{
+  plugins: [
+    {
+      resolve: "gatsby-plugin-asset-path",
+      options: {
+        fileTypes: ["js", "map", "css"],
       },
     },
   ];
