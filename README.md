@@ -11,11 +11,11 @@ Use `assetPrefix` instead of `pathPrefix`
 - A sitemap is no longer required
 - A webmanifest is no longer required
 
-The above two files were hard coded into this plugin in earlier versions. If you still want to move these files to the assets folder, use the new `additionalPaths` option, see below for more information on the option. To get the same behavior as v1, use the following options:
+The above two files were hard coded into this plugin in earlier versions. If you still want to move these files to the assets folder, use the new `paths` option, see below for more information on the option. To get the same behavior as v1, use the following options:
 
 ```javascript
 options: {
-  additionalPaths: ["manifest.webmanifest", "sitemap.xml"],
+  paths: ["manifest.webmanifest", "sitemap.xml"],
 },
 ```
 
@@ -144,7 +144,7 @@ The paths of files/folders to be moved to the asset directory.
     {
       resolve: "gatsby-plugin-asset-path",
       options: {
-        paths: ["static"]
+        paths: ["static"],
       },
     },
   ];
@@ -164,7 +164,7 @@ The types of files in the root `publicFolder` to be moved to the asset directory
     {
       resolve: "gatsby-plugin-asset-path",
       options: {
-        fileTypes: ['js', 'map', 'css'],
+        fileTypes: ["js", "map", "css"],
       },
     },
   ];

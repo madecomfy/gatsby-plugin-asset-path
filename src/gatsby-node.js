@@ -26,26 +26,13 @@ export const onCreateWebpackConfig = (
 export const onPostBuild = async (
   { pathPrefix },
   {
-    additionalPaths = [], // depricated argument to prevent breaking change
+    additionalPaths = [], // deprecated argument to prevent breaking change
     paths = ["static", "icons", "page-data"],
     fileTypes = ["js", "css"],
   },
 ) => {
   const publicFolder = "./public";
   const assetFolder = path.join(publicFolder, `.${pathPrefix}`);
-
-  const copy = (fileOrFolder) => {
-    const currentPath = path.join(publicFolder, fileOrFolder);
-    const newPath = path.join(assetFolder, fileOrFolder);
-    try {
-      if (fs.existsSync(currentPath)) {
-        return fs.copy(currentPath, newPath);
-      }
-    } catch (err) {
-      console.error(err);
-      return Promise.resolve();
-    }
-  };
 
   const move = (fileOrFolder) => {
     const currentPath = path.join(publicFolder, fileOrFolder);
