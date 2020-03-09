@@ -20,7 +20,7 @@ export const onCreateWebpackConfig = (
 };
 
 /**
- * Moves all js and css files into timestamp-named folder
+ * Moves assets to assets folder
  * @see {@link https://next.gatsbyjs.org/docs/node-apis/#onPostBuild}
  */
 export const onPostBuild = async (
