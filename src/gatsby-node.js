@@ -24,7 +24,7 @@ export const onCreateWebpackConfig = (
  * @see {@link https://next.gatsbyjs.org/docs/node-apis/#onPostBuild}
  */
 export const onPostBuild = async (
-  { pathPrefix },
+  { pathPrefix }, // this is specified by the 'assetPrefix' parameter in gatsby-config (note 'asset' instead of 'path'!)
   {
     additionalPaths = [], // deprecated argument to prevent breaking change
     paths = ["static", "icons", "page-data"],
@@ -33,6 +33,18 @@ export const onPostBuild = async (
 ) => {
   const publicFolder = "./public";
   const assetFolder = path.join(publicFolder, `.${pathPrefix}`);
+
+  if (additionalPaths.length) {
+    console.warn(
+      `gatsby-plugin-asset-path argument 'additionalPaths' is deprecated, use 'paths'`,
+    );
+  }
+
+  if (pathPrefix === "") {
+    console.error(`gatsby-plugin-asset-path requires both:
+- 'assetPrefix' set in gatsby-config
+- 'gatsby build' to be run with the '--prefix-paths' flag`);
+  }
 
   const move = (fileOrFolder) => {
     const currentPath = path.join(publicFolder, fileOrFolder);
