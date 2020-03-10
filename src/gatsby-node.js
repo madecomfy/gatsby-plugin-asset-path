@@ -27,7 +27,7 @@ export const onPostBuild = async (
   { pathPrefix }, // this is specified by the 'assetPrefix' parameter in gatsby-config (note 'asset' instead of 'path'!)
   {
     additionalPaths = [], // deprecated argument to prevent breaking change
-    paths = ["static", "icons", "page-data"],
+    paths = ["static", "page-data"],
     fileTypes = ["js", "css"],
   },
 ) => {
@@ -45,6 +45,26 @@ export const onPostBuild = async (
 - 'assetPrefix' set in gatsby-config
 - 'gatsby build' to be run with the '--prefix-paths' flag`);
   }
+
+  if (paths.includes("icons")) {
+    console.error(
+      `gatsby-plugin-asset-path needs to copy 'icons' to work with 'gatsby-plugin-manifest'
+do not add 'icons' to paths parameter!`,
+    );
+  }
+
+  const copy = (fileOrFolder) => {
+    const currentPath = path.join(publicFolder, fileOrFolder);
+    const newPath = path.join(assetFolder, fileOrFolder);
+    try {
+      if (fs.existsSync(currentPath)) {
+        return fs.copy(currentPath, newPath);
+      }
+    } catch (err) {
+      console.error(err);
+      return Promise.resolve();
+    }
+  };
 
   const move = (fileOrFolder) => {
     const currentPath = path.join(publicFolder, fileOrFolder);
@@ -69,6 +89,10 @@ export const onPostBuild = async (
     .concat(additionalPaths)
     .concat(filesInPublicFolder);
 
+  const thingsToCopy = ["icons"];
+
+  // Copy icons
+  await Promise.all(thingsToCopy.map(copy));
   // Move files and directories
   await Promise.all(thingsToMove.map(move));
 };
