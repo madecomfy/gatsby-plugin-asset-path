@@ -133,9 +133,9 @@ Stops Webpack from generating the .js.map files
 
 ### paths
 
-Default: `["static", "icons", "page-data"]`
+Default: `["static", "page-data"]`
 
-The paths of files/folders to be moved to the asset directory.
+The paths of files/folders to be moved to the asset directory. Do not add `icons` since these are copied and duplicated across `/public/icons/` and `/public/${assetPrefix}/`.
 
 ```javascript
 // Your gatsby-config.js
