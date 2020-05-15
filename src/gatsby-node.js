@@ -66,33 +66,18 @@ do not add 'icons' to paths parameter!`,
     }
   };
 
-  const move = (fileOrFolder) => {
-    const currentPath = path.join(publicFolder, fileOrFolder);
-    const newPath = path.join(assetFolder, fileOrFolder);
-    try {
-      if (fs.existsSync(currentPath)) {
-        return fs.move(currentPath, newPath);
-      }
-    } catch (err) {
-      console.error(err);
-      return Promise.resolve();
-    }
-  };
-
   const filesExtensions = fileTypes.join("|");
   const filesRegex = RegExp(`.*.(${filesExtensions})$`);
   const filterFilesIn = (folder) =>
     fs.readdirSync(folder).filter((file) => filesRegex.test(file));
 
   const filesInPublicFolder = filterFilesIn(publicFolder);
-  const thingsToMove = paths
+
+  const thingsToCopy = ["icons"]
+    .concat(paths)
     .concat(additionalPaths)
     .concat(filesInPublicFolder);
 
-  const thingsToCopy = ["icons"];
-
-  // Copy icons
+  // Copy all files to the new prefix
   await Promise.all(thingsToCopy.map(copy));
-  // Move files and directories
-  await Promise.all(thingsToMove.map(move));
 };
