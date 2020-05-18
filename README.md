@@ -1,10 +1,10 @@
 # gatsby-plugin-asset-path
 
-Move all of your JS and CSS build files, as well as the static folder into a subdirectory of your choice.
+Copy all of your JS and CSS build files, as well as the static folder into a subdirectory of your choice.
 
-## Breaking change in v1
+## Breaking change in v3
 
-Use `assetPrefix` instead of `pathPrefix`
+No longer moves files due to gatsby's internal cache management. Copying files instead!
 
 ## Breaking change in v2
 
@@ -20,6 +20,10 @@ options: {
 ```
 
 Also note that `sitemap.xml` and the `page-data` folder were copied to assets folder before, now they are moved just as all other files this plugin handles.
+
+## Breaking change in v1
+
+Use `assetPrefix` instead of `pathPrefix`
 
 ## Our use case
 
@@ -135,7 +139,7 @@ Stops Webpack from generating the .js.map files
 
 Default: `["static", "page-data"]`
 
-The paths of files/folders to be moved to the asset directory. Do not add `icons` since these are copied and duplicated across `/public/icons/` and `/public/${assetPrefix}/`.
+The paths of files/folders to be copied to the asset directory. Do not add `icons` since these are copied and duplicated across `/public/icons/` and `/public/${assetPrefix}/`.
 
 ```javascript
 // Your gatsby-config.js
@@ -155,7 +159,7 @@ The paths of files/folders to be moved to the asset directory. Do not add `icons
 
 Default: `["js", "css"]`
 
-The types of files in the root `publicFolder` to be moved to the asset directory.
+The types of files in the root `publicFolder` to be copied to the asset directory.
 
 ```javascript
 // Your gatsby-config.js
