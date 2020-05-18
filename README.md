@@ -174,3 +174,7 @@ The types of files in the root `publicFolder` to be copied to the asset director
   ];
 }
 ```
+
+# DEPLOY
+
+Update version in package.json then release via github releases with same tag #!
