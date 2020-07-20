@@ -31,6 +31,11 @@ export const onPostBuild = async (
     fileTypes = ["js", "css"],
   },
 ) => {
+  
+  if (pathPrefix.indexOf('//') !== -1) {
+    pathPrefix = pathPrefix.replace(/^.*\/\/[^\/]+/, '')
+  }
+
   const publicFolder = "./public";
   const assetFolder = path.join(publicFolder, `.${pathPrefix}`);
 
