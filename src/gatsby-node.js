@@ -31,7 +31,9 @@ export const onPostBuild = async (
     fileTypes = ["js", "css"],
   },
 ) => {
-  
+// this is for deploying to external domains...
+// it writes the files correctly with the domain coded into the generated files,
+// but prevents them from being written into an incorrect folder like `/public/.https:/foobar.netlify.com/assets/`
   if (pathPrefix.indexOf('//') !== -1) {
     pathPrefix = pathPrefix.replace(/^.*\/\/[^\/]+/, '')
   }
