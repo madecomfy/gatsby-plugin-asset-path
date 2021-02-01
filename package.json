@@ -21,6 +21,7 @@
     "subdirectory"
   ],
   "dependencies": {
+    "babel-runtime": "^6.26.0",
     "fs-extra": "^7.0.0",
     "history": "^4.7.2",
     "react": "^16.4.2",
