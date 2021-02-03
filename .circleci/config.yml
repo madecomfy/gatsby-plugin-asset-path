@@ -33,7 +33,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      - run: yarn lint
       - run: yarn test
 
   build:
