@@ -68,6 +68,7 @@ workflows:
       - test:
           requires:
             - configure
+            - build
           filters:
             tags:
               only: /^v[0-9].*/
@@ -80,7 +81,6 @@ workflows:
       - deploy:
           requires:
             - test
-            - build
           filters:
             tags:
               only: /^v[0-9].*/
