@@ -33,6 +33,7 @@ dist/
 dist
 .idea
 
+coverage
 .nyc*
 docs/_book
 gatsby-*

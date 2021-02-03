@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src --out-dir .",
-    "test": "echo \"No test for now... yes we know.. it's baaaad\""
+    "test": "nyc --reporter=text mocha",
+    "test:watch": "mocha --watch",
+    "test:html": "nyc --reporter=html mocha"
   },
   "author": "Ryan Chung <ryan@madecomfy.com.au>",
   "license": "mit",
@@ -28,6 +30,10 @@
   "devDependencies": {
     "@babel/cli": "^7.12.13",
     "@babel/core": "^7.12.13",
-    "@babel/preset-env": "^7.12.13"
+    "@babel/plugin-transform-runtime": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "mocha": "^8.2.1",
+    "mock-fs": "^4.13.0",
+    "nyc": "^15.1.0"
   }
 }
