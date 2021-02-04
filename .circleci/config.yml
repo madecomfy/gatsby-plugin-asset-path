@@ -3,7 +3,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: madecomfyau/node-aws:10
+    - image: madecomfyau/node-aws:12
 
 jobs:
   configure:
@@ -13,16 +13,16 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-yarn-cache-{{ checksum "yarn.lock" }}
+            - v2-yarn-cache-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-yarn-cache-
+            - v2-yarn-cache-
 
       - run: yarn install
 
       - save_cache:
           paths:
             - node_modules
-          key: v1-yarn-cache-{{ checksum "yarn.lock" }}
+          key: v2-yarn-cache-{{ checksum "yarn.lock" }}
 
       - persist_to_workspace:
           root: ~/repo
@@ -33,7 +33,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      - run: yarn lint
       - run: yarn test
 
   build:
@@ -69,6 +68,7 @@ workflows:
       - test:
           requires:
             - configure
+            - build
           filters:
             tags:
               only: /^v[0-9].*/
@@ -81,7 +81,6 @@ workflows:
       - deploy:
           requires:
             - test
-            - build
           filters:
             tags:
               only: /^v[0-9].*/
