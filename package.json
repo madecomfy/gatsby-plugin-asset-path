@@ -1,11 +1,11 @@
 {
   "name": "gatsby-plugin-asset-path",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Gatsby plugin that copies JS and CSS files and static folder to a custom folder",
   "main": "index.js",
   "scripts": {
     "build": "babel src --out-dir .",
-    "test": "nyc --reporter=text mocha",
+    "test": "mocha",
     "test:watch": "mocha --watch",
     "test:html": "nyc --reporter=html mocha"
   },
