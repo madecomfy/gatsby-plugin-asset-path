@@ -175,6 +175,26 @@ The types of files in the root `publicFolder` to be copied to the asset director
 }
 ```
 
+### copyAssets
+
+Default: true
+
+After v3, the default behavior is to copy all assets. This is due to problems with Gatsby cache described in https://github.com/madecomfy/gatsby-plugin-asset-path/issues/41. If you know what you are doing and you still want to move your assets (at least most of them, some needs to be copied still), set `copyAssets` to `false` and your assets will be moved instead.
+
+```javascript
+// Your gatsby-config.js
+{
+  plugins: [
+    {
+      resolve: "gatsby-plugin-asset-path",
+      options: {
+        copyAssets: false, // move assets instead of copy
+      },
+    },
+  ];
+}
+```
+
 # DEPLOY
 
 Update version in package.json then release via github releases with same tag #!
