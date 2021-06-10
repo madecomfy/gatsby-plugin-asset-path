@@ -22,7 +22,7 @@ export const onCreateWebpackConfig = (
 };
 
 /**
- * Moves assets to assets folder
+ * Moves or copies assets to assets folder
  * @see {@link https://next.gatsbyjs.org/docs/node-apis/#onPostBuild}
  */
 export const onPostBuild = async (
@@ -31,6 +31,7 @@ export const onPostBuild = async (
     additionalPaths = [], // deprecated argument to prevent breaking change
     paths = ["static", "page-data"],
     fileTypes = ["js", "css"],
+    copyAssets = true,
   },
 ) => {
   // this is for deploying to external domains...
@@ -76,6 +77,19 @@ do not add 'icons' to paths parameter!`,
     }
   };
 
+  const move = (fileOrFolder) => {
+    const currentPath = path.join(publicFolder, fileOrFolder);
+    const newPath = path.join(assetFolder, fileOrFolder);
+    try {
+      if (fs.existsSync(currentPath)) {
+        return fs.move(currentPath, newPath);
+      }
+    } catch (err) {
+      console.error(err);
+      return Promise.resolve();
+    }
+  };
+
   const filesExtensions = fileTypes.join("|");
   const filesRegex = RegExp(`.*.(${filesExtensions})$`);
   const filterFilesIn = (folder) =>
@@ -83,11 +97,12 @@ do not add 'icons' to paths parameter!`,
 
   const filesInPublicFolder = filterFilesIn(publicFolder);
 
-  const thingsToCopy = ["icons"]
-    .concat(paths)
-    .concat(additionalPaths)
-    .concat(filesInPublicFolder);
+  // Some things should always be copied
+  await Promise.all(["icons"].map(copy));
 
-  // Copy all files to the new prefix
-  await Promise.all(thingsToCopy.map(copy));
+  const assets = paths.concat(additionalPaths).concat(filesInPublicFolder);
+
+  const transferMethod = copyAssets ? copy : move;
+
+  await Promise.all(assets.map(transferMethod));
 };
