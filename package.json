@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-plugin-asset-path",
-  "version": "3.0.4",
+  "name": "@madecomfy/gatsby-plugin-asset-path",
+  "version": "3.0.5",
   "description": "Gatsby plugin that copies JS and CSS files and static folder to a custom folder",
   "main": "index.js",
   "scripts": {
