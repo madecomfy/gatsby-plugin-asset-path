@@ -52,7 +52,9 @@ jobs:
           at: ~/repo
       - run:
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+          command: |
+            echo "@madecomfy:registry=https://npm.pkg.github.com" > ~/repo/.npmrc
+            echo "//npm.pkg.github.com/:_authToken=$GH_PACKAGES_TOKEN" >> ~/repo/.npmrc
       - run:
           name: Publish package
           command: npm publish --allow-same-version

@@ -84,11 +84,11 @@ Our new `assets` folder would contain assets of every build once on S3.
 ## Install
 
 ```
-npm install --save-dev gatsby-plugin-asset-path
+npm install --save-dev @madecomfy/gatsby-plugin-asset-path
 ```
 
 ```
-yarn install -D gatsby-plugin-asset-path
+yarn install -D @madecomfy/gatsby-plugin-asset-path
 ```
 
 ## How to use
@@ -99,7 +99,7 @@ yarn install -D gatsby-plugin-asset-path
     assetPrefix: "custom_asset_folder",
     plugins: [
         {
-            resolve: "gatsby-plugin-asset-path"
+            resolve: "@madecomfy/gatsby-plugin-asset-path"
         }
     ]
 }
@@ -126,7 +126,7 @@ Stops Webpack from generating the .js.map files
 {
   plugins: [
     {
-      resolve: "gatsby-plugin-asset-path",
+      resolve: "@madecomfy/gatsby-plugin-asset-path",
       options: {
         removeMapFiles: true,
       },
@@ -146,7 +146,7 @@ The paths of files/folders to be copied to the asset directory. Do not add `icon
 {
   plugins: [
     {
-      resolve: "gatsby-plugin-asset-path",
+      resolve: "@madecomfy/gatsby-plugin-asset-path",
       options: {
         paths: ["static"],
       },
@@ -166,7 +166,7 @@ The types of files in the root `publicFolder` to be copied to the asset director
 {
   plugins: [
     {
-      resolve: "gatsby-plugin-asset-path",
+      resolve: "@madecomfy/gatsby-plugin-asset-path",
       options: {
         fileTypes: ["js", "map", "css"],
       },
